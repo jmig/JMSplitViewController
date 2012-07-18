@@ -53,11 +53,17 @@ typedef enum _JMSplitViewDividerStyle {
 @property (strong, nonatomic) UIViewController *masterViewController;
 @property (strong, nonatomic) UIViewController *detailViewController;
 
+@property (readonly, nonatomic) CGFloat masterViewWidthInPortrait;
+@property (readonly, nonatomic) CGFloat masterViewWidthInLandscape;
+
 @property (assign, nonatomic) BOOL showMasterViewInPortrait;
 @property (assign, nonatomic) BOOL showMasterViewInLandscape;
 
 @property (assign, nonatomic) JMSplitViewDividerStyle dividerStyle;
 
 - (void)setMasterViewWidth:(CGFloat)width forOrientation:(UIInterfaceOrientation)theOrientation;
+- (void)setMasterViewWidth:(CGFloat)width forOrientation:(UIInterfaceOrientation)theOrientation animated:(BOOL)animated;
+
+- (BOOL)isLandscape;
 
 @end

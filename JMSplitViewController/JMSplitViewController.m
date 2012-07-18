@@ -43,6 +43,8 @@
 
 @synthesize masterViewController = _masterViewController;
 @synthesize detailViewController = _detailViewController;
+@synthesize masterViewWidthInPortrait = _masterViewWidthInPortrait;
+@synthesize masterViewWidthInLandscape = _masterViewWidthInLandscape;
 @synthesize showMasterViewInLandscape = _showMasterViewInLandscape;
 @synthesize showMasterViewInPortrait = _showMasterViewInPortrait;
 @synthesize dividerStyle = _dividerStyle;
@@ -276,7 +278,12 @@
 
 #pragma mark - Accessors
 
-- (void)setMasterViewWidth:(CGFloat)width forOrientation:(UIInterfaceOrientation)theOrientation;
+- (void)setMasterViewWidth:(CGFloat)width forOrientation:(UIInterfaceOrientation)theOrientation
+{
+    [self setMasterViewWidth:width forOrientation:theOrientation animated:YES];
+}
+
+- (void)setMasterViewWidth:(CGFloat)width forOrientation:(UIInterfaceOrientation)theOrientation animated:(BOOL)animated
 {
     if (UIInterfaceOrientationIsLandscape(theOrientation)) {
         _masterViewWidthInLandscape = width;
@@ -285,7 +292,7 @@
         _masterViewWidthInPortrait = width;
     }
     //We change the width so we need to update the layout.
-    [self layoutSubviews];
+    [self layoutSubviewsWithAnimation:animated];
 }
 
 - (void)setShowMasterViewInLandscape:(BOOL)showMasterViewInLandscape
